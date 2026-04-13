@@ -693,19 +693,27 @@
 
       /* Hero */
       .hero { padding: 100px 16px 60px; }
-      .hero-robot-top { width: 140px; height: 140px; }
-      .hero-badges { gap: 8px; }
+      .hero-robot-top {
+        width: 140px; height: 140px;
+        display: block; margin: 0 auto;
+      }
+      .hero-eyebrow { text-align: center; }
+      .hero-badges { gap: 8px; justify-content: center; }
       .badge { font-size: .82rem; padding: 10px 14px; }
       .badge.badge-highlight { font-size: .95rem; padding: 12px 20px; }
       .hero-cta { padding: 16px 32px; font-size: .85rem; margin-top: 32px; }
 
-      /* Countdown */
-      .countdown-blocks { gap: 6px; }
-      .countdown-block { padding: 12px 4px; }
-      .countdown-num { font-size: 1.4rem; }
-      .countdown-unit { font-size: .6rem; }
-      .countdown-sep { font-size: 1rem; margin-bottom: 14px; }
-      .countdown-label { font-size: .72rem; letter-spacing: .2em; text-align: center; }
+      /* Countdown — 4 equal cols on mobile */
+      .countdown-section { padding: 64px 12px 28px; }
+      .countdown-blocks {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
+        width: 100% !important;
+      }
+      .countdown-block { padding: 6px 2px !important; }
+      .countdown-num { font-size: 5.5vw !important; }
+      .countdown-unit { font-size: .5rem; letter-spacing: .08em; margin-top: 4px; }
+      .countdown-label { font-size: .68rem; letter-spacing: .1em; text-align: center; line-height: 1.5; }
 
       /* Prizes */
       .pyr-row { gap: 8px; }
@@ -762,7 +770,9 @@
     }
     .countdown-label span { color: var(--green); }
     .countdown-blocks {
-      display: flex; gap: 12px; align-items: center; flex-wrap: nowrap;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 110px));
+      gap: 12px;
       justify-content: center;
     }
     .countdown-block {
@@ -809,23 +819,20 @@
   <!-- ═══ COUNTDOWN ══════════════════════════════════════ -->
   <div class="countdown-section">
     <div class="countdown-wrap">
-      <p class="countdown-label">⏳ Inscrições encerram em <span>24 de Maio às 23h59</span></p>
+      <p class="countdown-label">⏳ Inscrições encerram em<br><span>24 de Maio às 23h59</span></p>
       <div class="countdown-blocks" id="countdown">
         <div class="countdown-block">
           <span class="countdown-num" id="cd-days">--</span>
           <span class="countdown-unit">Dias</span>
         </div>
-        <span class="countdown-sep">:</span>
         <div class="countdown-block">
           <span class="countdown-num" id="cd-hours">--</span>
           <span class="countdown-unit">Horas</span>
         </div>
-        <span class="countdown-sep">:</span>
         <div class="countdown-block">
           <span class="countdown-num" id="cd-mins">--</span>
           <span class="countdown-unit">Minutos</span>
         </div>
-        <span class="countdown-sep">:</span>
         <div class="countdown-block">
           <span class="countdown-num" id="cd-secs">--</span>
           <span class="countdown-unit">Segundos</span>
