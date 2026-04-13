@@ -754,7 +754,7 @@
     }
     .countdown-wrap {
       display: flex; flex-direction: column; align-items: center;
-      gap: 16px;
+      gap: 16px; max-width: 600px; margin: 0 auto;
     }
     .countdown-label {
       font-family: var(--font-cond); font-size: .8rem; font-weight: 700;
@@ -762,13 +762,13 @@
     }
     .countdown-label span { color: var(--green); }
     .countdown-blocks {
-      display: flex; gap: 8px; align-items: center; flex-wrap: nowrap;
-      justify-content: center; width: 100%; overflow: hidden;
+      display: flex; gap: 12px; align-items: center; flex-wrap: nowrap;
+      justify-content: center;
     }
     .countdown-block {
       display: flex; flex-direction: column; align-items: center;
       background: var(--bg2); border: 1px solid var(--border);
-      padding: 14px 8px; flex: 1; min-width: 0;
+      padding: 20px 28px; min-width: 110px;
       clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
       position: relative;
     }
@@ -809,7 +809,7 @@
   <!-- ═══ COUNTDOWN ══════════════════════════════════════ -->
   <div class="countdown-section">
     <div class="countdown-wrap">
-      <p class="countdown-label">⏳ Inscrições encerram em <span>24 de Maio às 23h59</span> — campeonato começa <span>26/05</span></p>
+      <p class="countdown-label">⏳ Inscrições encerram em <span>24 de Maio às 23h59</span></p>
       <div class="countdown-blocks" id="countdown">
         <div class="countdown-block">
           <span class="countdown-num" id="cd-days">--</span>
