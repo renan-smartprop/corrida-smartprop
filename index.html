@@ -96,9 +96,10 @@
       0%, 100% { transform: translateY(0); }
       50%       { transform: translateY(-12px); }
     }
-    @media (max-width: 768px) {
-        .prizes-header { flex-direction: column; }
-      .prizes-robot { width: 120px; height: 120px; }
+   @media (max-width: 768px) {
+  .prizes-header { flex-direction: row; align-items: center; gap: 16px; }
+  .prizes-robot-wrap { flex-shrink: 0; }
+  .prizes-robot { width: 90px; height: 90px; }
     }
     .hero {
       min-height: 100vh;
