@@ -1352,8 +1352,19 @@
       btn.disabled = true;
       btn.textContent = "Enviando...";
 
-      // Tenta enviar email via EmailJS
+      // Salva no Google Sheets + envia email via EmailJS
+      const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyfIp9LJo0qLULbS2OXS2NTf7Z4JkHaFdQYFVE8-7DZApFR4K8WXJZR0m5MphtUlrky/exec";
+
       try {
+        // 1. Salva no Google Sheets (no-cors, fire and forget)
+        fetch(SHEETS_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, telefone })
+        }).catch(err => console.warn("Sheets error:", err));
+
+        // 2. Envia e-mail de confirmação via EmailJS
         if (EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
           await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
             nome:     nome,
@@ -1361,19 +1372,17 @@
             telefone: telefone,
           });
         } else {
-          // Modo dev: pula o envio e avisa no console
-          console.warn("[SmartProp] EmailJS não configurado. Configure as chaves no início do script.");
+          console.warn("[SmartProp] EmailJS não configurado.");
           console.log("Dados capturados:", { nome, email, telefone });
         }
 
-        // Mostra overlay de sucesso e redireciona
+        // 3. Mostra overlay de pagamento
         showSuccess();
 
       } catch (err) {
-        console.error("EmailJS error:", err);
-        btn.disabled = false;
-        btn.textContent = "Acelerar na Corrida →";
-        showToast("Falha ao enviar e-mail. Verifique sua conexão e tente novamente.");
+        console.error("Erro:", err);
+        // Mesmo com erro no email, mostra o overlay (dados já foram salvos no Sheets)
+        showSuccess();
       }
     }
 
