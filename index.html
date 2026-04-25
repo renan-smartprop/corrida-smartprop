@@ -588,10 +588,21 @@
       display: none;
       position: fixed; inset: 0; z-index: 200;
       background: rgba(6,11,6,.96);
-      flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 20px;
+      flex-direction: column; align-items: center; justify-content: flex-start;
+      text-align: center; padding: 60px 20px 40px;
+      overflow-y: auto;
       backdrop-filter: blur(8px);
     }
+    .success-close {
+      position: fixed; top: 16px; right: 16px; z-index: 201;
+      background: transparent; border: 1px solid var(--muted);
+      color: var(--muted); width: 36px; height: 36px; border-radius: 50%;
+      font-size: 1.1rem; cursor: pointer; display: none;
+      align-items: center; justify-content: center;
+      transition: border-color .2s, color .2s;
+    }
+    .success-close:hover { border-color: var(--white); color: var(--white); }
+    .success-overlay.active .success-close { display: flex; }
     .success-overlay.active { display: flex; animation: fadeIn .4s ease; }
     .success-icon {
       font-size: 4rem; margin-bottom: 24px;
@@ -1218,7 +1229,8 @@
   </footer>
 
   <!-- ═══ SUCCESS OVERLAY ══════════════════════════════ -->
-  <div class="success-overlay" id="successOverlay" style="overflow-y:auto;">
+  <div class="success-overlay" id="successOverlay">
+    <button class="success-close" onclick="document.getElementById('successOverlay').classList.remove('active')" aria-label="Fechar">✕</button>
     <div style="max-width:480px; width:100%; padding:20px 0;">
       <div class="success-icon">🏁</div>
       <h2 class="success-title">Quase lá!</h2>
